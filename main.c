@@ -35,6 +35,7 @@ int main(int argc, char*argv[])
   clock_gettime(CLOCK_MONOTONIC, &ts_start); // get the start
 
   result = bmm(A, B);
+  // result = bmm_parallel(A,B);
   check(C,result);
 
 
