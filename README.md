@@ -1,6 +1,6 @@
 # Exercise 4 - Parallel & Distributed Computer Systems
 
-## Sparse Boolean Matrix Multiplication with two levels of parallelization
+# Sparse Boolean Matrix Multiplication with two levels of parallelization
 
 In this assignment we will implement Boolean matrix multiplication (BMM) of sparse CSC matrices using at least two forms of parallelism that combined produce the correct result faster than either form of parallelism independently. You may combine shared and distributed memory parallelism either OpenMP or Cilk, together with MPI, and or GPU programming.
 
@@ -49,8 +49,27 @@ C = (A*B) > 0;
 toc
 ```
 
-## What to submit
-A 3-page report in PDF format (any pages after the 3rd one will not be taken into account). Describe in a paragraph two applications of BMM in science and engineering in adequate detail. Describe your parallel algorithm design main points, data distribution, communication patterns and blocking
-factor choice decisions. Report execution times of your implementations with respect to size n on the sets of matrices we will specify. Use innovative and imformative plots to convey the information and explain the performance you get Upload the source code on GitHub, BitBucket, Dropbox, Google Drive, etc. and add a link in your report. Cite the sources of everything you used. You may work in groups of two. Submit report twice with both collaborator names listed.
+# Optional Improvements
+
+## Output sensitive product
+
+There are redundant operations in BMM by the naive calculation, especially when matrices A and B are dense. Once a true is computed in the accumulation for element c(i, j), the rest of the accumulation is redundant and can be skipped. This also integrates with the prescribed filter F.
+
+Cp,q := 0; Xp,q := Fp,q
+for s := 1, ⋯ ,nb
+Cp,q := Cp,q ∨ Fp,q ⊙ ( Ap,s Bs,q )
+Xp,q := Xp,q ∧ (¬Cp,q ).
+The remaining block BMMs, during the accumulation, are adaptively filtered, i.e., made output sensitive.
+
+## Method of Four Russians
+
+The block BMMs at the base level, Cp,q := Cp,q ∨ ( Xp,q ⊙ ( Ap,s Bs,q )), may be accelerated by the Four Russians (4R) algorithm. 
+
+# What to submit
+ - A 3-page report in PDF format (any pages after the 3rd one will not be taken into account). Describe in a paragraph two applications of BMM in science and engineering in adequate detail. Describe your parallel algorithm design main points, data distribution, communication patterns and blocking
+factor choice decisions. Report execution times of your implementations with respect to size n on the sets of matrices we will specify. Use innovative and imformative plots to convey the information and explain the performance you get 
+ - Upload the source code on GitHub, BitBucket, Dropbox, Google Drive, etc. and add a link in your report. 
+ - Cite the sources of everything you used. 
+ - You may work in groups of two. Submit report twice with both collaborator names listed.
   
 
