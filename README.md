@@ -24,7 +24,30 @@ Your implementation does not need to be recursive. Select a block size that prov
 
 You should provide two different interfaces, in the same way as the following two MATLAB routines:
 
+```
+% MATLAB uses ordinary multiplication with doubles
+% To emulate BMM, we compare against 0 to get true/false values
+% do not implement your code with doubles!
+function C = bmm(A,B)
+C = (A*B)>0;
+end
+function C = bmmfiltered(A,B,F)
+C = ( F.*(A*B) )>0;
+end
+```
 
+Before proceeding to any parallel implementation, verify that your sequential code is correct and its wall-clock
+execution time is comparable to the following MATLAB/Octave commands
+
+```
+n = 5e6;
+d = 2; % approximate number of true elements per row
+A = sprand( n, n, d/n ) > 0;
+B = sprand( n, n, d/n ) > 0;
+tic;
+C = (A*B) > 0;
+toc
+```
 
 ## What to submit
 A 3-page report in PDF format (any pages after the 3rd one will not be taken into account). Describe in a paragraph two applications of BMM in science and engineering in adequate detail. Describe your parallel algorithm design main points, data distribution, communication patterns and blocking
