@@ -1,1 +1,4 @@
+For the serial implementation the function called by main is bmm.
+For the parallel implementation the function called by main is bmm_parallel.
+
 The code has a segmentation fault and is not running.
