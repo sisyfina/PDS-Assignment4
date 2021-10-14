@@ -1,6 +1,6 @@
 For the serial implementation the function called by main is bmm.
 For the parallel implementation the function called by main is bmm_parallel.
-The routine binaryInsertion() is adding a number in a sorted array in a sorted position.
+The routine binaryInsertion() is adding a number in a sorted array in a sorted position and is removing any duplicates.
 
 Matrices for input are being created with a matlab script and the validation of the result is being done by the routine check()
 
