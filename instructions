@@ -1,4 +1,6 @@
 For the serial implementation the function called by main is bmm.
 For the parallel implementation the function called by main is bmm_parallel.
 
+Matrices for input are being created with a matlab script and the validation of the result is being done by the routine check()
+
 The code has a segmentation fault and is not running.
